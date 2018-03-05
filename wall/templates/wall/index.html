@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<head>
+    <title>Graffiti Wall</title>
+</head>
+<body>
+    
+    <p><a href="{% url 'wall:new_post' %}">Post your own!</a></p>
+
+    {% if post_list %}
+        {% for post in post_list %}
+            <p>{{ post.post_text }}</p>
+            <p>by {{ post.author_name }} at {{ post.pub_date }}</p>
+            <hr>
+        {% endfor %}
+    {% else %}
+        <p>No posts are available.</p>
+    {% endif %}
+    
+</body>
