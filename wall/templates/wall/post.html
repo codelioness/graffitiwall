@@ -10,6 +10,10 @@
         <textarea name="message" inputmode="text" maxlength="400">Your Message</textarea>
         <label>Name: </label>
         <input name="name" type="text" inputmode="text" maxlength="40" placeholder="Your Name">
+        {% for value, name in colors %}
+            <input type="radio" name="color" id="color{{forloop.counter}}" value="{{value}}">
+            <label for="choice{{forloop.counter}}">{{name}}</label>
+        {% endfor %}
         <input type="submit" value="Tag it!">
     </form>
     

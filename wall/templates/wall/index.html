@@ -1,6 +1,9 @@
+{% load static %}
+
 <!DOCTYPE html>
 <head>
     <title>Graffiti Wall</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'wall/index.css' %}">
 </head>
 <body>
     
@@ -8,9 +11,11 @@
 
     {% if post_list %}
         {% for post in post_list %}
-            <p>{{ post.post_text }}</p>
-            <p>by {{ post.author_name }} at {{ post.pub_date }}</p>
-            <hr>
+            <div id="post{{forloop.counter}}" class="post" style="color:{{post.color}}">
+                <p>{{ post.post_text }}</p>
+                <p>by {{ post.author_name }} at {{ post.pub_date }}</p>
+            </div>
+            <br>
         {% endfor %}
     {% else %}
         <p>No posts are available.</p>
