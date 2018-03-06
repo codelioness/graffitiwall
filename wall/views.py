@@ -1,5 +1,7 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
+from django.utils import timezone
+from django.urls import reverse
 
 from .models import Post
 
@@ -10,7 +12,13 @@ def index(request):
     return render(request, 'wall/index.html', context)
 
 def new_post(request):
-    return HttpResponse("This is the post page!")
+    return render(request, 'wall/post.html')
 
 def posted(request):
-    return HttpResponse("Posted!")
+    try:
+        post = Post(post_text=request.POST['message'], author_name=request.POST['name'], pub_date=timezone.now())
+    except KeyError:
+        return render(request, 'wall/post.html', {'error_message': "You forgot something!"})
+    else:
+        post.save();
+        return HttpResponseRedirect(reverse('wall:index'))

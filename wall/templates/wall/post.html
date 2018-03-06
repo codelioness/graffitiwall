@@ -4,6 +4,13 @@
 </head>
 <body>
 
-    <form action="{% url 'wall:'}"
+    <form action="{% url 'wall:posted' %}" method="post">
+        {% csrf_token %}
+        <label>Message: </label>
+        <textarea name="message" inputmode="text" maxlength="400">Your Message</textarea>
+        <label>Name: </label>
+        <input name="name" type="text" inputmode="text" maxlength="40" placeholder="Your Name">
+        <input type="submit" value="Tag it!">
+    </form>
     
 </body>
