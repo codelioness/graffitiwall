@@ -4,6 +4,7 @@
 <head>
     <title>Graffiti Wall</title>
     <link rel="stylesheet" type="text/css" href="{% static 'wall/index.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Permanent+Marker|Sedgwick+Ave+Display" rel="stylesheet"> 
 </head>
 <body>
     
@@ -11,9 +12,10 @@
 
     {% if post_list %}
         {% for post in post_list %}
-            <div id="post{{forloop.counter}}" class="post" style="color:{{post.color}}">
-                <p>{{ post.post_text }}</p>
-                <p>by {{ post.author_name }} at {{ post.pub_date }}</p>
+            <div id="post{{forloop.counter}}" class="post" style="color:{{post.color}}; text-shadow: 0px 0px 3px {{post.color}};">
+                <p class="post-text">{{ post.post_text }}</p>
+                <p class="post-info"><span class="post-name">{{ post.author_name }}</span> 
+                    @ {{ post.pub_date|date:"n/j/y" }}</p>
             </div>
             <br>
         {% endfor %}
